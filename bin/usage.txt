@@ -1,0 +1,10 @@
+
+Usage: test-snippet [options] [destination]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+  -tmpl  --template [name]     Template name. Default: 'mocha'.
+         --title [title]       Test title. Default: ''.
+
