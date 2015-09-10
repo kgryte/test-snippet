@@ -131,7 +131,7 @@ describe( 'async', function tests() {
 		}
 	});
 
-	it( 'should create a snippet in a specified directory', function test( done ) {
+	it( 'should create a file in a specified directory', function test( done ) {
 		var dirpath;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
@@ -152,7 +152,7 @@ describe( 'async', function tests() {
 		}
 	});
 
-	it( 'should create a configured snippet in a specified directory', function test( done ) {
+	it( 'should create a configured file in a specified directory', function test( done ) {
 		var dirpath;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
@@ -231,7 +231,7 @@ describe( 'async', function tests() {
 		}
 	});
 
-	it( 'should create a snippet in a specified directory without requiring a callback', function test( done ) {
+	it( 'should create a file in a specified directory without requiring a callback', function test( done ) {
 		var dirpath;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
@@ -249,7 +249,7 @@ describe( 'async', function tests() {
 		}
 	});
 
-	it( 'should create a snippet using a specified template', function test( done ) {
+	it( 'should create a file using a specified template', function test( done ) {
 		var dirpath;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );

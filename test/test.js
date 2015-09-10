@@ -21,7 +21,7 @@ describe( 'test-snippet', function tests() {
 		expect( cp ).to.be.a( 'function' );
 	});
 
-	it( 'should export a function for creating a snippet synchronously', function test() {
+	it( 'should export a function for creating a file synchronously', function test() {
 		expect( cp.sync ).to.be.a( 'function' );
 	});
 

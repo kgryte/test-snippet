@@ -68,7 +68,7 @@ describe( 'sync', function tests() {
 		}
 	});
 
-	it( 'should create a snippet in a specified directory', function test() {
+	it( 'should create a file in a specified directory', function test() {
 		var dirpath,
 			bool;
 
@@ -82,7 +82,7 @@ describe( 'sync', function tests() {
 		assert.isTrue( bool );
 	});
 
-	it( 'should create a configured snippet in a specified directory', function test() {
+	it( 'should create a configured file in a specified directory', function test() {
 		var dirpath,
 			fpath1,
 			fpath2,
@@ -109,7 +109,7 @@ describe( 'sync', function tests() {
 		assert.deepEqual( f1, f2 );
 	});
 
-	it( 'should create a snippet using a specified template', function test() {
+	it( 'should create a file using a specified template', function test() {
 		var dirpath,
 			bool;
 

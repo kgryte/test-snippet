@@ -2,7 +2,7 @@ Test Snippet
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Creates a test snippet.
+> Creates a test file.
 
 
 ## Installation
@@ -20,7 +20,7 @@ var cp = require( '@kgryte/test-snippet' );
 
 #### cp( dest[, opts ][, clbk ] )
 
-Asynchronously create a snippet in a specified `destination` directory.
+Asynchronously create a file in a specified `destination` directory.
 
 ``` javascript
 cp( 'path/to/a/directory', onCreate );
@@ -57,7 +57,7 @@ cp( 'path/to/a/directory', {
 
 #### cp.sync( dest[, opts] )
 
-Synchronously create a snippet in a specified `destination` directory.
+Synchronously create a file in a specified `destination` directory.
 
 ``` javascript
 cp.sync( 'path/to/a/directory' );
@@ -125,7 +125,7 @@ Options:
 ``` bash
 $ cd ~/my/project/directory
 $ test-snippet
-# => creates a snippet in the current working directory
+# => creates a file in the current working directory
 ```
 
 To specify a destination other than the current working directory, provide a `destination`.
