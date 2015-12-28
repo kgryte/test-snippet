@@ -1,6 +1,6 @@
 Test Snippet
 ===
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > Creates a test file.
 
@@ -179,11 +179,11 @@ Copyright &copy; 2015. Athan Reines.
 [npm-image]: http://img.shields.io/npm/v/@kgryte/test-snippet.svg
 [npm-url]: https://npmjs.org/package/@kgryte/test-snippet
 
-[travis-image]: http://img.shields.io/travis/kgryte/test-snippet/master.svg
-[travis-url]: https://travis-ci.org/kgryte/test-snippet
+[build-image]: http://img.shields.io/travis/kgryte/test-snippet/master.svg
+[build-url]: https://travis-ci.org/kgryte/test-snippet
 
-[codecov-image]: https://img.shields.io/codecov/c/github/kgryte/test-snippet/master.svg
-[codecov-url]: https://codecov.io/github/kgryte/test-snippet?branch=master
+[coverage-image]: https://img.shields.io/codecov/c/github/kgryte/test-snippet/master.svg
+[coverage-url]: https://codecov.io/github/kgryte/test-snippet?branch=master
 
 [dependencies-image]: http://img.shields.io/david/kgryte/test-snippet.svg
 [dependencies-url]: https://david-dm.org/kgryte/test-snippet
