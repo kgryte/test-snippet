@@ -34,10 +34,10 @@ function onCreate( error ) {
 ```
 
 The function accepts the following `options`:
-*	__template__: snippet template name. Default: `'mocha'`.
+*	__template__: snippet template name. Default: `'tape'`.
 *	__title__: test title. Default: `''`.
 
-By default, a `mocha` template is used. To specify a different snippet template, set the `template` option.
+By default, a [`tape`][tape] template is used. To specify a different snippet template, set the `template` option.
 
 ``` javascript
 cp( 'path/to/a/directory', {
@@ -115,7 +115,7 @@ Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-  -tmpl  --template [name]     Template name. Default: 'mocha'.
+  -tmpl  --template [name]     Template name. Default: 'tape'.
          --title [title]       Test title. Default: ''.
 ```
 
@@ -193,3 +193,5 @@ Copyright &copy; 2015. Athan Reines.
 
 [github-issues-image]: http://img.shields.io/github/issues/kgryte/test-snippet.svg
 [github-issues-url]: https://github.com/kgryte/test-snippet/issues
+
+[tape]: https://github.com/substack/tape

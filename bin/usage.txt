@@ -5,6 +5,6 @@ Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-  -tmpl  --template [name]     Template name. Default: 'mocha'.
+  -tmpl  --template [name]     Template name. Default: 'tape'.
          --title [title]       Test title. Default: ''.
 
