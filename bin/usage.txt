@@ -7,4 +7,4 @@ Options:
   -V,    --version             Print the package version.
   -tmpl  --template [name]     Template name. Default: 'tape'.
          --title [title]       Test title. Default: ''.
-
+  -f,    --filename            File name. Default: 'test.js'.

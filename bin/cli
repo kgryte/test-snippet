@@ -3,20 +3,20 @@
 
 // MODULES //
 
-var fs = require( 'fs' ),
-	path = require( 'path' ),
-	pkginfo = require( 'pkginfo' ),
-	parseArgs = require( 'minimist' ),
-	notifier = require( 'update-notifier' ),
-	opts = require( './opts.json' ),
-	cp = require( './../lib' );
+var fs = require( 'fs' );
+var path = require( 'path' );
+var pkginfo = require( 'pkginfo' );
+var parseArgs = require( 'minimist' );
+var notifier = require( 'update-notifier' );
+var opts = require( './opts.json' );
+var cp = require( './../lib' );
 
 
 // VARIABLES //
 
-var args,
-	dest,
-	pkg;
+var args;
+var dest;
+var pkg;
 
 
 // INIT //
@@ -77,6 +77,9 @@ if ( args.hasOwnProperty( 'template' ) ) {
 if ( args.hasOwnProperty( 'title' ) ) {
 	opts.title = args.title;
 }
+if ( args.hasOwnProperty( 'filename' ) ) {
+	opts.filename = args.filename;
+}
 if ( args._.length ) {
 	dest = args._[ 0 ];
 } else {
@@ -84,5 +87,3 @@ if ( args._.length ) {
 }
 
 cp( dest, opts, onCopy );
-
-
