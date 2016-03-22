@@ -6,18 +6,18 @@ var mpath = './../lib/async.js';
 
 // MODULES //
 
-var chai = require( 'chai' ),
-	mkdirp = require( 'mkdirp' ),
-	path = require( 'path' ),
-	fs = require( 'fs' ),
-	proxyquire = require( 'proxyquire' ),
-	cp = require( mpath );
+var chai = require( 'chai' );
+var mkdirp = require( 'mkdirp' );
+var path = require( 'path' );
+var fs = require( 'fs' );
+var proxyquire = require( 'proxyquire' );
+var cp = require( mpath );
 
 
 // VARIABLES //
 
-var expect = chai.expect,
-	assert = chai.assert;
+var expect = chai.expect;
+var assert = chai.assert;
 
 
 // TESTS //
@@ -265,6 +265,29 @@ describe( 'async', function tests() {
 				assert.ok( false );
 			} else {
 				bool = fs.existsSync( path.join( dirpath, 'test.js' ) );
+
+				assert.isTrue( bool );
+			}
+			done();
+		}
+	});
+
+	it( 'should create a file using a custom file name', function test( done ) {
+		var dirpath;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		cp( dirpath, {
+			'filename': 'test.custom.js'
+		}, onFinish );
+
+		function onFinish( error ) {
+			var bool;
+			if ( error ) {
+				assert.ok( false );
+			} else {
+				bool = fs.existsSync( path.join( dirpath, 'test.custom.js' ) );
 
 				assert.isTrue( bool );
 			}
