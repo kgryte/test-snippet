@@ -2,7 +2,7 @@ Test Snippet
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Creates a test file.
+> Create a test file.
 
 
 ## Installation
