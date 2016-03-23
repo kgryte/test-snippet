@@ -46,6 +46,13 @@ describe( 'sync', function tests() {
 		}
 	});
 
+	it( 'should throw an error if provided a destination which is not a directory and whose directory path does not exist', function test() {
+		expect( foo ).to.throw( Error );
+		function foo() {
+			cp( '/dakfjla/adlkfjaslf/dljdlfa/adljflakd/test.js' );
+		}
+	});
+
 	it( 'should throw an error if provided an invalid options argument', function test() {
 		var values = [
 			'beep',
@@ -126,20 +133,35 @@ describe( 'sync', function tests() {
 		assert.isTrue( bool );
 	});
 
-	it( 'should create a file using a custom file name', function test() {
+	it( 'should allow custom filenames', function test() {
+		var filepath;
 		var dirpath;
 		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
-		// TODO: fix me
 		mkdirp.sync( dirpath );
-		cp( dirpath, {
-			'filename': 'test.custom.js'
-		});
+		filepath = path.join( dirpath, 'test.custom.js' );
+		cp( filepath );
 
-		bool = fs.existsSync( path.join( dirpath, 'test.custom.js' ) );
+		bool = fs.existsSync( filepath );
+		assert.isTrue( bool );
+	});
 
+	it( 'should allow custom filenames (existing filepath)', function test() {
+		var filepath;
+		var dirpath;
+		var bool;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		filepath = path.join( dirpath, 'test.custom.js' );
+
+		cp( filepath );
+		cp( filepath );
+
+		bool = fs.existsSync( filepath );
 		assert.isTrue( bool );
 	});
 

@@ -7,6 +7,7 @@ var fs = require( 'fs' );
 var path = require( 'path' );
 var parseArgs = require( 'minimist' );
 var notifier = require( 'update-notifier' );
+var cwd = require( 'utils-cwd' );
 var opts = require( './opts.json' );
 var pkg = require( './../package.json' );
 var templates = require( './../lib/templates.js' );
@@ -79,7 +80,7 @@ if ( args.hasOwnProperty( 'title' ) ) {
 if ( args._.length ) {
 	dest = args._[ 0 ];
 } else {
-	dest = process.cwd();
+	dest = cwd();
 }
 
 
