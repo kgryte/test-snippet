@@ -5,7 +5,8 @@
 	],
 	"boolean": [
 		"help",
-		"version"
+		"version",
+		"templates"
 	],
 	"alias": {
 		"help": [

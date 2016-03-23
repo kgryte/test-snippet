@@ -9,6 +9,7 @@ var parseArgs = require( 'minimist' );
 var notifier = require( 'update-notifier' );
 var opts = require( './opts.json' );
 var pkg = require( './../package.json' );
+var templates = require( './../lib/templates.js' );
 var cp = require( './../lib' );
 
 
@@ -53,6 +54,14 @@ if ( args.help ) {
 
 if ( args.version ) {
 	console.log( pkg.version );
+	return;
+}
+
+
+// TEMPLATES //
+
+if ( args.templates ) {
+	console.log( templates.join( '\n' ) );
 	return;
 }
 

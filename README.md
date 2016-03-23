@@ -67,7 +67,7 @@ The function accepts the same `options` as the asynchronous version.
 
 ## Notes
 
-* 	Supported templates may be found in the `./lib` directory and are named according to the directory name.
+* 	Supported templates may be found in the `./templates` directory and are named according to the directory name.
 
 
 ## Examples
@@ -114,6 +114,7 @@ Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
+         --templates           List available templates.
   -tmpl, --template name       Template name. Default: 'tape'.
          --title title         Test title. Default: ''.
 ```
