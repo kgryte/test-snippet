@@ -164,9 +164,10 @@ describe( 'async', function tests() {
 		}, onFinish );
 
 		function onFinish( error ) {
-			var fpath1,
-				fpath2,
-				f1, f2;
+			var fpath1;
+			var fpath2;
+			var f1;
+			var f2;
 
 			if ( error ) {
 				assert.ok( false );
@@ -189,8 +190,8 @@ describe( 'async', function tests() {
 	});
 
 	it( 'should pass any read errors to a provided callback', function test( done ) {
-		var dirpath,
-			cp;
+		var dirpath;
+		var cp;
 
 		cp = proxyquire( mpath, {
 			'fs': {
@@ -277,6 +278,7 @@ describe( 'async', function tests() {
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
+		// TODO: fixme
 		mkdirp.sync( dirpath );
 		cp( dirpath, {
 			'filename': 'test.custom.js'

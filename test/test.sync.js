@@ -69,7 +69,8 @@ describe( 'sync', function tests() {
 	});
 
 	it( 'should create a file in a specified directory', function test() {
-		var dirpath, bool;
+		var dirpath;
+		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
@@ -85,7 +86,8 @@ describe( 'sync', function tests() {
 		var dirpath;
 		var fpath1;
 		var fpath2;
-		var f1, f2;
+		var f1;
+		var f2;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
@@ -109,7 +111,8 @@ describe( 'sync', function tests() {
 	});
 
 	it( 'should create a file using a specified template', function test() {
-		var dirpath, bool;
+		var dirpath;
+		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
@@ -124,10 +127,12 @@ describe( 'sync', function tests() {
 	});
 
 	it( 'should create a file using a custom file name', function test() {
-		var dirpath, bool;
+		var dirpath;
+		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
+		// TODO: fix me
 		mkdirp.sync( dirpath );
 		cp( dirpath, {
 			'filename': 'test.custom.js'
@@ -139,7 +144,8 @@ describe( 'sync', function tests() {
 	});
 
 	it( 'should ignore any unrecognized options', function test() {
-		var dirpath, bool;
+		var dirpath;
+		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
