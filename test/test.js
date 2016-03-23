@@ -3,14 +3,14 @@
 
 // MODULES //
 
-var chai = require( 'chai' ),
-	cp = require( './../lib' );
+var chai = require( 'chai' );
+var cp = require( './../lib' );
 
 
 // VARIABLES //
 
-var expect = chai.expect,
-	assert = chai.assert;
+var expect = chai.expect;
+var assert = chai.assert;
 
 
 // TESTS //

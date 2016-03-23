@@ -3,17 +3,17 @@
 
 // MODULES //
 
-var chai = require( 'chai' ),
-	mkdirp = require( 'mkdirp' ),
-	path = require( 'path' ),
-	fs = require( 'fs' ),
-	cp = require( './../lib/sync.js' );
+var chai = require( 'chai' );
+var mkdirp = require( 'mkdirp' );
+var path = require( 'path' );
+var fs = require( 'fs' );
+var cp = require( './../lib/sync.js' );
 
 
 // VARIABLES //
 
-var expect = chai.expect,
-	assert = chai.assert;
+var expect = chai.expect;
+var assert = chai.assert;
 
 
 // TESTS //
@@ -46,6 +46,13 @@ describe( 'sync', function tests() {
 		}
 	});
 
+	it( 'should throw an error if provided a destination which is not a directory and whose directory path does not exist', function test() {
+		expect( foo ).to.throw( Error );
+		function foo() {
+			cp( '/dakfjla/adlkfjaslf/dljdlfa/adljflakd/test.js' );
+		}
+	});
+
 	it( 'should throw an error if provided an invalid options argument', function test() {
 		var values = [
 			'beep',
@@ -69,8 +76,8 @@ describe( 'sync', function tests() {
 	});
 
 	it( 'should create a file in a specified directory', function test() {
-		var dirpath,
-			bool;
+		var dirpath;
+		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
@@ -83,10 +90,11 @@ describe( 'sync', function tests() {
 	});
 
 	it( 'should create a configured file in a specified directory', function test() {
-		var dirpath,
-			fpath1,
-			fpath2,
-			f1, f2;
+		var dirpath;
+		var fpath1;
+		var fpath2;
+		var f1;
+		var f2;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
@@ -110,8 +118,8 @@ describe( 'sync', function tests() {
 	});
 
 	it( 'should create a file using a specified template', function test() {
-		var dirpath,
-			bool;
+		var dirpath;
+		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
@@ -125,9 +133,41 @@ describe( 'sync', function tests() {
 		assert.isTrue( bool );
 	});
 
+	it( 'should support custom filenames', function test() {
+		var filepath;
+		var dirpath;
+		var bool;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		filepath = path.join( dirpath, 'test.custom.js' );
+		cp( filepath );
+
+		bool = fs.existsSync( filepath );
+		assert.isTrue( bool );
+	});
+
+	it( 'should support custom filenames (existing filepath)', function test() {
+		var filepath;
+		var dirpath;
+		var bool;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		filepath = path.join( dirpath, 'test.custom.js' );
+
+		cp( filepath );
+		cp( filepath );
+
+		bool = fs.existsSync( filepath );
+		assert.isTrue( bool );
+	});
+
 	it( 'should ignore any unrecognized options', function test() {
-		var dirpath,
-			bool;
+		var dirpath;
+		var bool;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 

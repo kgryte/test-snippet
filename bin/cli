@@ -3,36 +3,33 @@
 
 // MODULES //
 
-var fs = require( 'fs' ),
-	path = require( 'path' ),
-	pkginfo = require( 'pkginfo' ),
-	parseArgs = require( 'minimist' ),
-	notifier = require( 'update-notifier' ),
-	opts = require( './opts.json' ),
-	cp = require( './../lib' );
+var fs = require( 'fs' );
+var path = require( 'path' );
+var parseArgs = require( 'minimist' );
+var notifier = require( 'update-notifier' );
+var cwd = require( 'utils-cwd' );
+var opts = require( './opts.json' );
+var pkg = require( './../package.json' );
+var templates = require( './../lib/templates.js' );
+var cp = require( './../lib' );
 
 
 // VARIABLES //
 
-var args,
-	dest,
-	pkg;
+var args;
+var dest;
+var pkg;
 
 
 // INIT //
 
+process.title = pkg.name;
 process.stdout.on( 'error', process.exit );
-
-
-// PACKAGE INFO //
-
-pkg = pkginfo.read( require.main );
-process.title = pkg.package.name;
 
 
 // PACKAGE UPDATES //
 
-notifier( { 'pkg': pkg.package } ).notify();
+notifier( { 'pkg': pkg } ).notify();
 
 
 // ARGUMENTS //
@@ -57,18 +54,21 @@ if ( args.help ) {
 // VERSION //
 
 if ( args.version ) {
-	console.log( pkg.package.version );
+	console.log( pkg.version );
 	return;
 }
 
 
-// COPY //
+// TEMPLATES //
 
-function onCopy( error ) {
-	if ( error ) {
-		throw error;
-	}
+if ( args.templates ) {
+	console.log( templates.join( '\n' ) );
+	return;
 }
+
+
+// OPTIONS //
+
 opts = {};
 
 if ( args.hasOwnProperty( 'template' ) ) {
@@ -80,9 +80,16 @@ if ( args.hasOwnProperty( 'title' ) ) {
 if ( args._.length ) {
 	dest = args._[ 0 ];
 } else {
-	dest = process.cwd();
+	dest = cwd();
 }
+
+
+// COPY //
 
 cp( dest, opts, onCopy );
 
-
+function onCopy( error ) {
+	if ( error ) {
+		throw error;
+	}
+}

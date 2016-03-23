@@ -2,7 +2,7 @@ Test Snippet
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Creates a test file.
+> Create a test file.
 
 
 ## Installation
@@ -20,16 +20,29 @@ var cp = require( '@kgryte/test-snippet' );
 
 #### cp( dest[, opts ][, clbk ] )
 
-Asynchronously create a file in a specified `destination` directory.
+Asynchronously creates a file in a specified `destination` directory or according to a specified filepath.
 
 ``` javascript
-cp( 'path/to/a/directory', onCreate );
+cp( 'path/to/an/existing/directory', onCreate );
 
 function onCreate( error ) {
 	if ( error ) {
 		throw error;
 	}
 	console.log( 'Success!' );
+}
+```
+
+If `dest` is a directory, the output filename is `test.js`. To specify a different filename, provide an absolute filepath.
+
+```
+cp( 'path/to/an/existing/directory/test.foo.js', onCreate );
+
+function onCreate( error ) {
+    if ( error ) {
+        throw error;
+    }
+    console.log( 'Success!' );
 }
 ```
 
@@ -54,13 +67,16 @@ cp( 'path/to/a/directory', {
 ```
 
 
-
 #### cp.sync( dest[, opts] )
 
-Synchronously create a file in a specified `destination` directory.
+Synchronously creates a file in a specified `destination` directory or according to a specified filepath.
 
 ``` javascript
-cp.sync( 'path/to/a/directory' );
+// Directory:
+cp.sync( 'path/to/an/existing/directory' );
+
+// Filepath:
+cp.sync( 'path/to/an/existing/directory/test.foo.js' );
 ```
 
 The function accepts the same `options` as the asynchronous version.
@@ -68,22 +84,23 @@ The function accepts the same `options` as the asynchronous version.
 
 ## Notes
 
-* 	Supported templates may be found in the `./lib` directory and are named according to the directory name.
+* 	Supported templates may be found in the `./templates` directory and are named according to the directory name.
 
 
 ## Examples
 
 ``` javascript
-var mkdirp = require( 'mkdirp' ),
-	path = require( 'path' ),
-	cp = require( '@kgryte/test-snippet' );
+var mkdirp = require( 'mkdirp' );
+var path = require( 'path' );
+var cp = require( '@kgryte/test-snippet' );
 
-var dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
-
+var dirpath = path.resolve( __dirname, '../build/'+(new Date().getTime()) );
 mkdirp.sync( dirpath );
-cp.sync( dirpath, {
-	'template': 'mocha',
-	'title': 'beep-boop'
+
+var filepath = path.join( dirpath, 'test.foo.js' );
+cp.sync( filepath, {
+    'template': 'mocha',
+    'title': 'beep-boop'
 });
 ```
 
@@ -115,8 +132,9 @@ Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-  -tmpl  --template [name]     Template name. Default: 'tape'.
-         --title [title]       Test title. Default: ''.
+         --templates           List available templates.
+  -tmpl, --template name       Template name. Default: 'tape'.
+         --title title         Test title. Default: ''.
 ```
 
 
@@ -125,15 +143,14 @@ Options:
 ``` bash
 $ cd ~/my/project/directory
 $ test-snippet
-# => creates a file in the current working directory
+# => creates a 'test.js' file in the current working directory
 ```
 
-To specify a destination other than the current working directory, provide a `destination`.
+To specify a destination directory other than the current working directory, provide a `destination`.
 
 ``` bash
 $ test-snippet ./../some/other/directory
 ```
-
 
 
 ---
@@ -141,7 +158,7 @@ $ test-snippet ./../some/other/directory
 
 ### Unit
 
-Unit tests use the [Mocha](http://mochajs.org/) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
+Unit tests use the [Mocha][mocha] test framework with [Chai][chai] assertions. To run the tests, execute the following command in the top-level application directory:
 
 ``` bash
 $ make test
@@ -152,7 +169,7 @@ All new feature development should have corresponding unit tests to validate cor
 
 ### Test Coverage
 
-This repository uses [Istanbul](https://github.com/gotwarlost/istanbul) as its code coverage tool. To generate a test coverage report, execute the following command in the top-level application directory:
+This repository uses [Istanbul][istanbul] as its code coverage tool. To generate a test coverage report, execute the following command in the top-level application directory:
 
 ``` bash
 $ make test-cov
@@ -173,7 +190,7 @@ $ make view-cov
 
 ## Copyright
 
-Copyright &copy; 2015. Athan Reines.
+Copyright &copy; 2015-2016. Athan Reines.
 
 
 [npm-image]: http://img.shields.io/npm/v/@kgryte/test-snippet.svg
@@ -195,3 +212,6 @@ Copyright &copy; 2015. Athan Reines.
 [github-issues-url]: https://github.com/kgryte/test-snippet/issues
 
 [tape]: https://github.com/substack/tape
+[mocha]: http://mochajs.org/
+[chai]: http://chaijs.com
+[istanbul]: https://github.com/gotwarlost/istanbul

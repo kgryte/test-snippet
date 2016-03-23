@@ -6,18 +6,18 @@ var mpath = './../lib/async.js';
 
 // MODULES //
 
-var chai = require( 'chai' ),
-	mkdirp = require( 'mkdirp' ),
-	path = require( 'path' ),
-	fs = require( 'fs' ),
-	proxyquire = require( 'proxyquire' ),
-	cp = require( mpath );
+var chai = require( 'chai' );
+var mkdirp = require( 'mkdirp' );
+var path = require( 'path' );
+var fs = require( 'fs' );
+var proxyquire = require( 'proxyquire' );
+var cp = require( mpath );
 
 
 // VARIABLES //
 
-var expect = chai.expect,
-	assert = chai.assert;
+var expect = chai.expect;
+var assert = chai.assert;
 
 
 // TESTS //
@@ -164,9 +164,10 @@ describe( 'async', function tests() {
 		}, onFinish );
 
 		function onFinish( error ) {
-			var fpath1,
-				fpath2,
-				f1, f2;
+			var fpath1;
+			var fpath2;
+			var f1;
+			var f2;
 
 			if ( error ) {
 				assert.ok( false );
@@ -189,8 +190,8 @@ describe( 'async', function tests() {
 	});
 
 	it( 'should pass any read errors to a provided callback', function test( done ) {
-		var dirpath,
-			cp;
+		var dirpath;
+		var cp;
 
 		cp = proxyquire( mpath, {
 			'fs': {
@@ -217,8 +218,36 @@ describe( 'async', function tests() {
 	it( 'should pass any write errors to a provided callback', function test( done ) {
 		var dirpath;
 
+		// Non-existent directory path:
+		dirpath = path.resolve( __dirname, '../build/akjfdlafjd/dafkdajflsd/' + new Date().getTime() );
+
+		cp( dirpath, onFinish );
+
+		function onFinish( error ) {
+			if ( error ) {
+				assert.ok( true );
+			} else {
+				assert.ok( false );
+			}
+			done();
+		}
+	});
+
+	it( 'should pass any errors encountered while resolving a destination path to a provided callback', function test( done ) {
+		var dirpath;
+		var cp;
+
+		cp = proxyquire( mpath, {
+			'fs': {
+				'stat': function stat( path, clbk ) {
+					clbk( new Error() );
+				}
+			}
+		});
+
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
+		mkdirp.sync( dirpath );
 		cp( dirpath, onFinish );
 
 		function onFinish( error ) {
@@ -267,6 +296,59 @@ describe( 'async', function tests() {
 				bool = fs.existsSync( path.join( dirpath, 'test.js' ) );
 
 				assert.isTrue( bool );
+			}
+			done();
+		}
+	});
+
+	it( 'should support custom filenames', function test( done ) {
+		var filepath;
+		var dirpath;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+
+		filepath = path.join( dirpath, 'test.custom.js' );
+		cp( filepath, onFinish );
+
+		function onFinish( error ) {
+			var bool;
+			if ( error ) {
+				assert.ok( false );
+			} else {
+				bool = fs.existsSync( filepath );
+
+				assert.isTrue( bool );
+			}
+			done();
+		}
+	});
+
+	it( 'should support custom filenames (existing filepath)', function test( done ) {
+		var filepath;
+		var dirpath;
+		var cnt;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		filepath = path.join( dirpath, 'test.custom.js' );
+
+		cnt = 0;
+		cp( filepath, onFinish );
+
+		function onFinish( error ) {
+			var bool;
+			if ( error ) {
+				assert.ok( false );
+			} else {
+				bool = fs.existsSync( filepath );
+
+				assert.isTrue( bool );
+			}
+			if ( ++cnt < 2 ) {
+				return cp( filepath, onFinish );
 			}
 			done();
 		}

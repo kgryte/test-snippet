@@ -10,6 +10,10 @@
     {
       "name": "Athan Reines",
       "email": "kgryte@gmail.com"
+    },
+    {
+      "name": "Philipp Burckhardt",
+      "email": "pburckhardt@outlook.com"
     }
   ],
   "bin": {
@@ -40,9 +44,10 @@
     "@kgryte/noop": "^1.0.0",
     "minimist": "^1.1.2",
     "mustache": "^2.2.1",
-    "pkginfo": "^0.3.0",
     "update-notifier": "^0.6.0",
-    "utils-merge2": "^1.0.0",
+    "utils-cwd": "^2.0.0",
+    "utils-fs-exists": "^1.0.1",
+    "utils-merge2": "^2.0.0",
     "validate.io-contains": "^1.0.0",
     "validate.io-function": "^1.0.2",
     "validate.io-object": "^1.0.4",
@@ -50,7 +55,7 @@
   },
   "devDependencies": {
     "chai": "3.x.x",
-    "codecov.io": "^0.1.5",
+    "codecov": "1.x.x",
     "istanbul": "^0.4.1",
     "jshint": "2.x.x",
     "jshint-stylish": "2.x.x",

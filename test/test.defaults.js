@@ -3,14 +3,14 @@
 
 // MODULES //
 
-var chai = require( 'chai' ),
-	defaults = require( './../lib/defaults.js' );
+var chai = require( 'chai' );
+var defaults = require( './../lib/defaults.js' );
 
 
 // VARIABLES //
 
-var expect = chai.expect,
-	assert = chai.assert;
+var expect = chai.expect;
+var assert = chai.assert;
 
 
 // TESTS //
