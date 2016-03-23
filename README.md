@@ -69,7 +69,7 @@ cp( 'path/to/a/directory', {
 
 #### cp.sync( dest[, opts] )
 
-Synchronously creates a file in a specified `destination` directory or according to a specified `filepath`.
+Synchronously creates a file in a specified `destination` directory or according to a specified filepath.
 
 ``` javascript
 // Directory:
