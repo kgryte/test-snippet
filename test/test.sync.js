@@ -133,7 +133,7 @@ describe( 'sync', function tests() {
 		assert.isTrue( bool );
 	});
 
-	it( 'should allow custom filenames', function test() {
+	it( 'should support custom filenames', function test() {
 		var filepath;
 		var dirpath;
 		var bool;
@@ -148,7 +148,7 @@ describe( 'sync', function tests() {
 		assert.isTrue( bool );
 	});
 
-	it( 'should allow custom filenames (existing filepath)', function test() {
+	it( 'should support custom filenames (existing filepath)', function test() {
 		var filepath;
 		var dirpath;
 		var bool;

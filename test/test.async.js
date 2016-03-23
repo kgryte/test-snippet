@@ -218,8 +218,36 @@ describe( 'async', function tests() {
 	it( 'should pass any write errors to a provided callback', function test( done ) {
 		var dirpath;
 
+		// Non-existent directory path:
+		dirpath = path.resolve( __dirname, '../build/akjfdlafjd/dafkdajflsd/' + new Date().getTime() );
+
+		cp( dirpath, onFinish );
+
+		function onFinish( error ) {
+			if ( error ) {
+				assert.ok( true );
+			} else {
+				assert.ok( false );
+			}
+			done();
+		}
+	});
+
+	it( 'should pass any errors encountered while resolving a destination path to a provided callback', function test( done ) {
+		var dirpath;
+		var cp;
+
+		cp = proxyquire( mpath, {
+			'fs': {
+				'stat': function stat( path, clbk ) {
+					clbk( new Error() );
+				}
+			}
+		});
+
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
+		mkdirp.sync( dirpath );
 		cp( dirpath, onFinish );
 
 		function onFinish( error ) {
@@ -273,25 +301,54 @@ describe( 'async', function tests() {
 		}
 	});
 
-	it( 'should create a file using a custom file name', function test( done ) {
+	it( 'should support custom filenames', function test( done ) {
+		var filepath;
 		var dirpath;
 
 		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
-		// TODO: fixme
 		mkdirp.sync( dirpath );
-		cp( dirpath, {
-			'filename': 'test.custom.js'
-		}, onFinish );
+
+		filepath = path.join( dirpath, 'test.custom.js' );
+		cp( filepath, onFinish );
 
 		function onFinish( error ) {
 			var bool;
 			if ( error ) {
 				assert.ok( false );
 			} else {
-				bool = fs.existsSync( path.join( dirpath, 'test.custom.js' ) );
+				bool = fs.existsSync( filepath );
 
 				assert.isTrue( bool );
+			}
+			done();
+		}
+	});
+
+	it( 'should support custom filenames (existing filepath)', function test( done ) {
+		var filepath;
+		var dirpath;
+		var cnt;
+
+		dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
+
+		mkdirp.sync( dirpath );
+		filepath = path.join( dirpath, 'test.custom.js' );
+
+		cnt = 0;
+		cp( filepath, onFinish );
+
+		function onFinish( error ) {
+			var bool;
+			if ( error ) {
+				assert.ok( false );
+			} else {
+				bool = fs.existsSync( filepath );
+
+				assert.isTrue( bool );
+			}
+			if ( ++cnt < 2 ) {
+				return cp( filepath, onFinish );
 			}
 			done();
 		}
