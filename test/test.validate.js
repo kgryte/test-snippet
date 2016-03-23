@@ -102,35 +102,12 @@ describe( 'validate', function tests() {
 		}
 	});
 
-	it( 'should return an error if provided a filename option which is not a string primitive', function test() {
-		var values, err;
-
-		values = [
-			5,
-			null,
-			true,
-			undefined,
-			NaN,
-			[],
-			{},
-			function(){}
-		];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			err = validate( {}, {
-				'filename': values[ i ]
-			});
-			assert.isTrue( err instanceof TypeError );
-		}
-	});
-
 	it( 'should return null if all options are valid', function test() {
 		var err;
 
 		err = validate( {}, {
 			'template': 'mocha',
-			'title': 'example',
-			'filename': 'test.beep.js'
+			'title': 'example'
 		});
 
 		assert.isNull( err );
