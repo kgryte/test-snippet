@@ -54,7 +54,6 @@ cp( 'path/to/a/directory', {
 ```
 
 
-
 #### cp.sync( dest[, opts] )
 
 Synchronously create a file in a specified `destination` directory.
@@ -74,9 +73,9 @@ The function accepts the same `options` as the asynchronous version.
 ## Examples
 
 ``` javascript
-var mkdirp = require( 'mkdirp' ),
-	path = require( 'path' ),
-	cp = require( '@kgryte/test-snippet' );
+var mkdirp = require( 'mkdirp' );
+var path = require( 'path' );
+var cp = require( '@kgryte/test-snippet' );
 
 var dirpath = path.resolve( __dirname, '../build/' + new Date().getTime() );
 
@@ -115,8 +114,8 @@ Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-  -tmpl  --template [name]     Template name. Default: 'tape'.
-         --title [title]       Test title. Default: ''.
+  -tmpl, --template name       Template name. Default: 'tape'.
+         --title title         Test title. Default: ''.
 ```
 
 
@@ -125,10 +124,10 @@ Options:
 ``` bash
 $ cd ~/my/project/directory
 $ test-snippet
-# => creates a file in the current working directory
+# => creates a 'test.js' file in the current working directory
 ```
 
-To specify a destination other than the current working directory, provide a `destination`.
+To specify a destination directory other than the current working directory, provide a `destination`.
 
 ``` bash
 $ test-snippet ./../some/other/directory
@@ -141,7 +140,7 @@ $ test-snippet ./../some/other/directory
 
 ### Unit
 
-Unit tests use the [Mocha](http://mochajs.org/) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
+Unit tests use the [Mocha][mocha] test framework with [Chai][chai] assertions. To run the tests, execute the following command in the top-level application directory:
 
 ``` bash
 $ make test
@@ -152,7 +151,7 @@ All new feature development should have corresponding unit tests to validate cor
 
 ### Test Coverage
 
-This repository uses [Istanbul](https://github.com/gotwarlost/istanbul) as its code coverage tool. To generate a test coverage report, execute the following command in the top-level application directory:
+This repository uses [Istanbul][istanbul] as its code coverage tool. To generate a test coverage report, execute the following command in the top-level application directory:
 
 ``` bash
 $ make test-cov
@@ -195,3 +194,6 @@ Copyright &copy; 2015-2016. Athan Reines.
 [github-issues-url]: https://github.com/kgryte/test-snippet/issues
 
 [tape]: https://github.com/substack/tape
+[mocha]: http://mochajs.org/
+[chai]: http://chaijs.com
+[istanbul]: https://github.com/gotwarlost/istanbul
