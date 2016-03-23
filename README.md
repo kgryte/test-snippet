@@ -20,16 +20,29 @@ var cp = require( '@kgryte/test-snippet' );
 
 #### cp( dest[, opts ][, clbk ] )
 
-Asynchronously create a file in a specified `destination` directory.
+Asynchronously creates a file in a specified `destination` directory or according to a specified filepath.
 
 ``` javascript
-cp( 'path/to/a/directory', onCreate );
+cp( 'path/to/an/existing/directory', onCreate );
 
 function onCreate( error ) {
 	if ( error ) {
 		throw error;
 	}
 	console.log( 'Success!' );
+}
+```
+
+If `dest` is a directory, the output `filename` is `test.js`. To specify a different `filename`, provide a `filepath`.
+
+```
+cp( 'path/to/an/existing/directory/test.foo.js', onCreate );
+
+function onCreate( error ) {
+    if ( error ) {
+        throw error;
+    }
+    console.log( 'Success!' );
 }
 ```
 
@@ -56,10 +69,14 @@ cp( 'path/to/a/directory', {
 
 #### cp.sync( dest[, opts] )
 
-Synchronously create a file in a specified `destination` directory.
+Synchronously creates a file in a specified `destination` directory or according to a specified `filepath`.
 
 ``` javascript
-cp.sync( 'path/to/a/directory' );
+// Directory:
+cp.sync( 'path/to/an/existing/directory' );
+
+// Filepath:
+cp.sync( 'path/to/an/existing/directory/test.foo.js' );
 ```
 
 The function accepts the same `options` as the asynchronous version.
