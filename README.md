@@ -35,7 +35,7 @@ function onCreate( error ) {
 
 If `dest` is a directory, the output filename is `test.js`. To specify a different filename, provide an absolute filepath.
 
-```
+``` javascript
 cp( 'path/to/an/existing/directory/test.foo.js', onCreate );
 
 function onCreate( error ) {
