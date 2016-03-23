@@ -22,7 +22,8 @@ describe( 'validate', function tests() {
 	});
 
 	it( 'should return an error if not provided a valid options argument', function test() {
-		var values, err;
+		var values;
+		var err;
 
 		values = [
 			'beep',
@@ -42,7 +43,8 @@ describe( 'validate', function tests() {
 	});
 
 	it( 'should return an error if provided a template option which is not a string primitive', function test() {
-		var values, err;
+		var values;
+		var err;
 
 		values = [
 			5,
@@ -64,7 +66,8 @@ describe( 'validate', function tests() {
 	});
 
 	it( 'should return an error if provided an unrecognized template option', function test() {
-		var values, err;
+		var values;
+		var err;
 
 		values = [
 			'beep',
@@ -81,7 +84,8 @@ describe( 'validate', function tests() {
 	});
 
 	it( 'should return an error if provided a title option which is not a string primitive', function test() {
-		var values, err;
+		var values;
+		var err;
 
 		values = [
 			5,
